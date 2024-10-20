@@ -1,0 +1,135 @@
+@import '../main-props';
+#data-container{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e6e4e4;
+    margin-top: 40px;
+    padding: 20px;
+
+    .data-box{
+        width: 47%;
+        height: 400px;
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom:60px;
+        border-radius: 20px;
+    }
+
+    .data-box:nth-child(7), .data-box:nth-child(8){
+        margin-bottom: 0;
+    }
+}
+
+#sidebar-box-header{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #001f43;
+    font-size: .87rem;
+    font-weight: bold;
+
+    li{
+        list-style: none;
+        color: #001f43;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    :first-child{
+        justify-content: flex-start;
+    }
+}
+
+.side-bar-data-box-row{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 1px dotted #177c8b;
+    padding-bottom: 4px;
+    padding: 4px 10px;
+
+    *{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .8rem;
+    }
+
+    :first-child{
+        justify-content: flex-start;
+    }
+
+
+    .asset-name{
+        color: #145fb5;
+        font-size: .9rem;
+        display: flex;
+        flex-flow: column;
+        span{
+            display: flex;
+            width: 100%;
+        }
+
+        .asset-short-name{
+            font-weight: bold;
+        }
+
+        .asset-long-name{
+            width: 100%;
+            font-size: .8rem;
+            white-space: nowrap; 
+            overflow: hidden;    
+            text-overflow: ellipsis; 
+            display: inline-block;
+            color: $details-text-color;
+        }
+    }
+
+    .gain{
+        color: green;
+    }
+
+    .lose{
+        color: red;
+    }
+}
+
+.side-bar-data-box-row:last-child{
+    border-bottom: none;
+}
+
+
+
+
+//columns widths
+
+.sidebar-box-header-name, .asset-name{
+    width: 20%;
+}
+
+.sidebar-box-header-price, .asset-last-price{
+    width: 15%;
+}
+
+.sidebar-box-header-change, .asset-change{
+    width: 25%;
+}
+
+.sidebar-box-header-change-percentage, .asset-change-percentage{
+    width: 20%;
+}
+
+.sidebar-box-header-volume, .asset-volume{
+    width: 20%;
+}
+
+

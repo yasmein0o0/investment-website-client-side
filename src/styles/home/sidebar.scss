@@ -1,0 +1,52 @@
+@import '../main-props';
+
+#sidebar{
+    width: 380px;
+    max-height: fit-content;
+    padding: 10px;
+    position: sticky;
+    float: right;
+    bottom: 70px;
+    right: 20px;
+    border-radius: 10px;
+}
+
+.sidebar-box{
+    min-height: 400px;
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    margin-top: 40px;
+    border-radius: 20px;
+    box-shadow:$main-shadow;
+
+    .title{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-transform: uppercase;
+        height: 30px;
+        border-radius: 10px;
+    }
+
+    .top-gainers-title{
+        color: #fff;
+        background-color: #26A69A;
+    }
+
+    .top-losers-title{
+        background-color: #e63946;
+    }
+
+    .undervalued-growth-title{
+        background-color: #fca311;
+    }
+
+    .most-active-title{
+        background-color: $sidebar-general-color;
+    }
+
+    
+}

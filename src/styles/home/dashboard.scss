@@ -1,0 +1,16 @@
+#dashboard{
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 70px;
+    position: relative;
+}
+
+#main{
+    min-height: 100vh;
+    max-width: 77%;
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap ;
+    align-items: flex-start;
+    justify-content:center;
+}

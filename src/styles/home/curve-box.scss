@@ -1,0 +1,75 @@
+@import "/home/bisky/repos/node/TOP-FULLSTACK/Inventory-App/client/src/styles/_main-props.scss";
+
+#curve-box{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    #curve-tools{
+        display: flex;
+        flex-flow: row;
+
+        #chart-types{
+            display: flex;
+            flex-flow: row;
+            font-size: 1.2em;
+            color: $periods-color;
+            margin-top: 2px;
+            text-transform: capitalize;
+            >*{
+                margin-right: 10px;
+                padding: 5px;
+                cursor: pointer;
+            }
+
+            :last-child{
+                border-right: 1px solid #000;
+            }
+        }
+
+        #periods{
+            padding: 5px;
+            >*{
+                margin-right: 7px;
+                color: $periods-color;
+                cursor: pointer;
+            }
+
+            >*:hover{
+                color: #0066ff;
+            }
+        }
+    }
+
+    #curve{
+        height: 500px;
+        width: 100%;
+    }
+
+    #curve-time{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .curve-time{
+            width: calc(80%/7);
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #cccccc;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .curve-time:hover{
+            background-color: $secondary-button-color;
+        }
+    }
+}
+

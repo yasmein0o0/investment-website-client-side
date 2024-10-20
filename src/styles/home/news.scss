@@ -1,0 +1,262 @@
+@import '../main-props';
+#news-box{
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    margin: 40px 0;
+    display: flex;
+    flex-flow: column;
+    #news-box-title{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 70px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #7c7c7c;
+        font-size: 2.4rem;
+        color: $news-title-color;
+    }
+}
+
+#news-grid{
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows:  170px 170px 280px 280px;
+    grid-gap: 20px;
+}
+
+.news{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 67% 33%;
+    font-size: .6rem;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 5px;
+    transition: .4s;
+    .news-pic{
+        grid-area: 1 / 1/ span 1/ span 2;
+        border-radius: 10px;
+        height:max-content;
+        height: -webkit-fill-available; /* For WebKit browsers (Chrome, Safari, etc.) */
+        height: -moz-available; /* For Firefox */
+        height: fill-available; /* Standard for others */
+        height: 100%; /* Fallback for other browsers */
+        object-fit: cover; /* Ensure the image doesn't distort */
+        width: 100%; /* Make sure it also takes the full width */
+    }
+    
+
+
+.news-title-text-container{
+    grid-area: 2 / 1 / span 1/ span 2;
+    display: flex;
+        flex-flow: column;
+
+        .news-title{
+            width: 100%;
+            font-size: 1.24em;
+            font-weight: bolder;
+            color: #393939;
+            margin-top: 8px;
+        }
+
+    }
+
+    .news-text{
+        display: none;
+    }
+    .news-detail{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 1.2em;
+        color: #797979;
+        .news-clock-icon{
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            margin-right: 2px;
+            margin-bottom: -1px;
+            background-image: url('/home/bisky/repos/node/TOP-FULLSTACK/Inventory-App/client/dist/assets/clock-regular.svg');
+        }
+
+
+        .news-date{
+            margin-right: 10%;
+        }
+    }
+
+}
+
+
+
+.news:first-child{
+    grid-area: 1 /1 / span 2 / span 3;
+    .news-title-text-container{
+        grid-area: 1 / 1 / span 2/ span 1;
+        padding: 10px;
+        justify-content: space-between;
+        .news-title{
+            font-size: 3em;
+            font-weight: bolder;
+            color: #343434;
+        }
+
+        .news-text{
+            display: block;
+            font-size: 1.7em;
+            text-align: justify;
+            color: #797979;
+            order: 3;
+            margin-top: -20px;
+            line-height: 30px;
+            overflow: hidden; /* Hide overflow content */
+            text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+            display: -webkit-box; /* Display as WebKit box for multiline truncation */
+            -webkit-line-clamp: 3; /* Limit to 3 lines (adjust as needed) */
+            -webkit-box-orient: vertical; /* Ensure the text is oriented vertically */
+            word-wrap: break-word;
+        }
+
+        .news-detail{
+            font-size: 1.7em;
+            margin-top: -30px;
+            order: 2;
+            .news-clock-icon{
+                margin-right: 6px;
+                height: 15px;
+                width: 15px;
+                margin-bottom: -2px;
+            }
+        }
+    }
+
+    .news-pic{
+        grid-area: 1 / 2 / span 2/ span 3;
+    }
+    
+}
+
+
+.news:nth-child(5){
+    grid-area: 1/ 4 / span 1/ span 1;
+    .news-title{
+        font-size: 1.3em;
+    }
+    .news-detail{
+        display: none;
+    }
+}
+
+.news:nth-child(6){
+    grid-area: 2/ 4 / span 1/ span 1;
+    .news-title{
+        font-size: 1.3em;
+    }
+    .news-detail{
+        display: none;
+    }
+}
+
+.news:nth-child(5),.news:nth-child(6),.news:nth-child(7){
+    .news-text{
+        color: #ffffff00;
+        display: none;
+    }
+
+    .news-title{
+        font-size: 1.3em;
+    }
+}
+
+
+//news hover animation
+.news:hover{
+    box-shadow: 1px 1px 4px #69696957,
+    -1px -1px 4px #69696957;
+}
+
+
+
+//responsive design
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    /*styles for XS */
+    #news-grid{
+        grid-auto-columns: 1fr;
+        grid-template-rows: auto;
+        grid-auto-flow: column;
+    }
+    .news:nth-child(1){
+        grid-area: 1 / 1/ span 1/ span 1;
+    }
+
+    .news:nth-child(5){
+        grid-area: 10 / 1 / span 1/ span1;
+    }
+    .news:nth-child(6){
+        grid-area: 11 / 1 / span 1/ span1;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 576px and up) */
+  @media (min-width: 576px) and (max-width: 767.98px) { 
+    /* Your styles for SM */
+    #news-grid{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .news:nth-child(1){
+        grid-area: 1 / 1/ span 1/ span 1;
+    }
+
+    .news:nth-child(5){
+        grid-area: 10 / 1 / span 1/ span1;
+    }
+    .news:nth-child(11){
+        grid-area: 10 / 1 / span 1/ span1;
+    }
+  }
+  
+  /* Medium devices (landscape tablets and small desktops, 768px and up) */
+  @media (min-width: 768px) and (max-width: 991.98px) { 
+    /* Your styles for MD */
+    #news-grid{
+        grid-auto-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .news:nth-child(1){
+        grid-area: 1 / 1/ span 1/ span 1;
+    }
+
+    .news:nth-child(5){
+        grid-area: 10 / 1 / span 1/ span1;
+    }
+    .news:nth-child(11){
+        grid-area: 10 / 1 / span 1/ span1;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width: 1199.98px) { 
+    /* Your styles for LG */
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) and (max-width: 1399.98px) { 
+    /* Your styles for XL */
+    
+  }
+  
+  /* XX large devices (very large desktops, 1400px and up) */
+  @media (min-width: 1400px) { 
+    /* Your styles for XXL */
+  }
+  
