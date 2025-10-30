@@ -38,10 +38,9 @@
 
   h3 {
     font-size: 14px;
-    margin-bottom: 40px;
     color: #848484;
     font-size: 17px;
-    margin: 20px 0;
+    margin: 20px 0 10px;
     text-transform: uppercase;
   }
 
@@ -234,6 +233,9 @@
       width: 100%;
       padding: 20px 20px 12px;
     }
+  }
+  .forgot-btn{
+    top: 47% !important;
   }
 }
 

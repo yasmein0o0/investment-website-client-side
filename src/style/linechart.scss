@@ -4,7 +4,7 @@
 $primary-blue: #aaeeff;
 $light-blue: #90e0ef;
 $lighter-blue: #caf0f8;
-$positive-green: #009966;
+$positive-green: #22deff;
 $negative-red: #da4d4d;
 $text-dark: #111827;
 $text-gray: #6b7280;
@@ -273,6 +273,7 @@ $watchlist: #fdad03;
 
   
   @media (max-width: $breakpoint-mobile) {
+    padding: 4px;
     height: 290px;
     min-height: 250px;
   }

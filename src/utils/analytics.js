@@ -127,7 +127,7 @@ export const formatLargeNumber = (num) => {
 };
 
 export const getVolatilityLevel = (volatility) => {
-  if (volatility < 10) return { level: "Low", color: "#10b981" };
+  if (volatility < 10) return { level: "Low", color: "#22deff" };
   if (volatility < 25) return { level: "Medium", color: "#f59e0b" };
   return { level: "High", color: "#ef4444" };
 };

@@ -118,7 +118,7 @@ export const StockAnalytics = ({ chartData, interval }) => {
               style={{
                 left: "0%",
                 width: "100%",
-                background: `linear-gradient(90deg, #ef4444 0%, #10b981 100%)`,
+                background: `linear-gradient(90deg, #ef4444 0%, #22deff 100%)`,
               }}
             />
             <div
