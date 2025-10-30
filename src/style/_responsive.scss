@@ -1,0 +1,169 @@
+// _responsive.scss
+// Responsive Breakpoints
+$breakpoints: (
+  'xs': 480px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Media Query Mixin
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints";
+  }
+}
+
+// Mobile-first Media Query
+@mixin respond-from($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints";
+  }
+}
+
+// Common Responsive Patterns
+@mixin mobile-nav {
+  @include respond-to('md') {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #14213d;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    transition: left 0.3s ease;
+    z-index: 999;
+    
+    &.nav-open {
+      left: 0;
+    }
+  }
+}
+
+@mixin mobile-overlay {
+  @include respond-to('md') {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+@mixin sidebar-responsive {
+  @include respond-to('lg') {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 90%;
+    max-width: 380px;
+    height: calc(100vh - 60px);
+    margin-bottom: 0;
+    border-radius: 0;
+    z-index: 999;
+    animation: slideInRight 0.3s ease;
+    
+    &.mobile-open {
+      display: block;
+    }
+  }
+}
+
+@mixin content-with-sidebar {
+  width: 100%;
+  
+  @include respond-from('xl') {
+    width: calc(100% - 380px);
+  }
+}
+
+@mixin grid-responsive($columns: 1) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  
+  @include respond-to('md') {
+    grid-template-columns: repeat(min($columns, 2), 1fr);
+  }
+  
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@mixin flex-column-mobile {
+  @include respond-to('md') {
+    flex-direction: column;
+  }
+}
+
+@mixin text-responsive($desktop: 1rem, $tablet: 0.95rem, $mobile: 0.9rem) {
+  font-size: $desktop;
+  
+  @include respond-to('lg') {
+    font-size: $tablet;
+  }
+  
+  @include respond-to('md') {
+    font-size: $mobile;
+  }
+}
+
+@mixin spacing-responsive($property, $desktop: 1rem, $tablet: 0.75rem, $mobile: 0.5rem) {
+  #{$property}: $desktop;
+  
+  @include respond-to('lg') {
+    #{$property}: $tablet;
+  }
+  
+  @include respond-to('md') {
+    #{$property}: $mobile;
+  }
+}
+
+// Animation Mixins
+@mixin slide-in-right {
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+@mixin fade-in {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import './main_props.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body, #root {
+  position: relative;
+  background-color: $bg-light;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: fit-content;
+  min-height: 100vh;
+}
+
+// Common responsive helper classes
+.container {
+  @include container;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+// Responsive visibility
+.mobile-only {
+  display: none !important;
+  
+  @media (max-width: $breakpoint-mobile) {
+    display: block !important;
+  }
+}
+
+.desktop-only {
+  display: block !important;
+  
+  @media (max-width: $breakpoint-mobile) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,250 @@
+@import './main_props.scss';
+
+#home {
+  position: relative;
+  display: flex;
+  width: calc(100% - 380px);
+  height: fit-content;
+  min-height: calc(100vh - 60px);
+  background-color: #f8fafc;
+  margin-top: 60px;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 100%;
+    margin-top: 60px;
+    padding-bottom: 10px; 
+  }
+
+  #home-content {
+    width: 100%;
+    flex: 1;
+    transition: margin-left 0.3s ease;
+      // margin-left: 80px;
+      
+      @media (max-width: $breakpoint-desktop) {
+        margin-left: 0;
+    }
+  }
+}
+
+/* Mobile Circle Button */
+.mobile-sidebar-circle {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 85%;
+  left: 0;
+  background: $primary-color;
+  border-radius: 10px;
+  cursor: move;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  @include flex-center;
+  touch-action: none;
+  user-select: none;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+    transform: scale(1.1);
+  }
+
+  &.dragging {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  &.open {
+    background: darken($primary-color, 15%);
+  }
+
+  .circle-icon {
+    width: 24px;
+    height: 24px;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: white;
+    }
+  }
+
+  // Hide on desktop
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+/* Remove the old toggle button styles */
+.home-sidebar-toggle {
+  display: none;
+}
+
+/* Home Sidebar */
+.home-sidebar {
+  position: sticky;
+  left: -80px;
+  top: 60px;
+  bottom: 0;
+  width: 80px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+  z-index: 90;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+
+  &.open {
+    left: 0;
+  }
+
+  &.mobile {
+    position: fixed;
+    top: 40px;
+    bottom: 70px; // Above bottom nav
+    background: rgba(white, 0.95);
+    backdrop-filter: blur(10px);
+    border-right: none;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-content {
+    padding: 20px 0;
+  }
+
+  .sidebar-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 16px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    text-decoration: none;
+    color: #64748b;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      background: #f8fafc;
+      color: $primary-color;
+
+      .sidebar-icon svg {
+        fill: $primary-color;
+      }
+
+      .sidebar-label {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &.active {
+      background: linear-gradient(90deg, rgba($primary-color, 0.1), transparent);
+      color: $primary-color;
+      border-right: 3px solid $primary-color;
+
+      .sidebar-icon svg {
+        fill: $primary-color;
+      }
+    }
+
+    .sidebar-icon {
+      width: 24px;
+      height: 24px;
+      
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #64748b;
+        transition: fill 0.3s ease;
+      }
+    }
+
+    .sidebar-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 6px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: all 0.3s ease;
+    }
+
+    // Show labels on hover
+    &:hover .sidebar-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Mobile Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 89;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Enhanced Recharts Wrapper */
+.recharts-wrapper {
+  width: 100%;
+  min-height: 620px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .mobile-sidebar-circle {
+    width: 35px;
+    height: 35px;
+    
+    .circle-icon {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  .home-sidebar.mobile {
+    width: 70px;
+    
+    .sidebar-link {
+      padding: 14px 10px;
+      
+      .sidebar-icon {
+        width: 22px;
+        height: 22px;
+      }
+      
+      .sidebar-label {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .mobile-sidebar-circle,
+  .home-sidebar {
+    display: none !important;
+  }
+  
+  #home {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}

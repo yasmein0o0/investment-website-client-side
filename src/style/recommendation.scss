@@ -1,0 +1,477 @@
+// RecommendationTrend.scss
+.recommendation-trend {
+  min-height: 100vh;
+  height: fit-content;
+  overflow-y: auto;
+  background: #f8fafc;
+  padding: 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  // Header
+  .header {
+    margin-bottom: 32px;
+    
+    .title-section {
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 8px 0;
+      }
+      
+      .subtitle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        
+        .ticker {
+          background: #eff6ff;
+          color: #2563eb;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        
+        .company {
+          color: #64748b;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  // Metrics Grid
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .metric-card {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      &.highlight {
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, #f8fafc, #f0f9ff);
+      }
+
+      .metric-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .metric-label {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+
+      .metric-percentage {
+        font-size: 14px;
+        font-weight: 600;
+        color: #3b82f6;
+      }
+
+      .metric-change {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 12px;
+        
+        &.positive {
+          background: #dcfce7;
+          color: #166534;
+        }
+        
+        &.negative {
+          background: #fef2f2;
+          color: #dc2626;
+        }
+      }
+    }
+  }
+
+  // Chart Section
+  .chart-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    margin-bottom: 24px;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+      }
+
+      .legend {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        .legend-item {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 12px;
+          color: #64748b;
+
+          .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+
+            &.strong-buy { background: #10b981; }
+            &.buy { background: #3b82f6; }
+            &.hold { background: #f59e0b; }
+            &.sell { background: #f97316; }
+            &.strong-sell { background: #ef4444; }
+          }
+        }
+      }
+    }
+
+    .chart-container {
+      height: 300px;
+    }
+  }
+
+  // Distribution Section
+  .distribution-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 0 0 24px 0;
+    }
+
+    .distribution-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .distribution-item {
+        display: grid;
+        grid-template-columns: 120px 1fr 60px;
+        gap: 16px;
+        align-items: center;
+
+        .distribution-label {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 14px;
+          font-weight: 500;
+          color: #374151;
+
+          .distribution-count {
+            font-weight: 600;
+            color: #0f172a;
+          }
+        }
+
+        .distribution-bar {
+          height: 8px;
+          background: #f1f5f9;
+          border-radius: 4px;
+          overflow: hidden;
+
+          .distribution-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+          }
+        }
+
+        .distribution-percentage {
+          font-size: 14px;
+          font-weight: 600;
+          color: #64748b;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  // Custom Tooltip
+  .custom-tooltip {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    .tooltip-header {
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 12px;
+      font-size: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .tooltip-content {
+      .tooltip-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+        font-size: 13px;
+
+        .label {
+          color: #64748b;
+        }
+
+        .value {
+          font-weight: 600;
+          color: #0f172a;
+
+          &.strong-buy { color: #10b981; }
+          &.buy { color: #3b82f6; }
+          &.hold { color: #f59e0b; }
+          &.sell { color: #f97316; }
+          &.strong-sell { color: #ef4444; }
+        }
+      }
+
+      .tooltip-total {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #f1f5f9;
+        font-weight: 600;
+        color: #0f172a;
+        font-size: 13px;
+      }
+    }
+  }
+
+  // Loading State
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    gap: 16px;
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 16px;
+    }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  // Error State
+  .error-state {
+    text-align: center;
+    padding: 80px 24px;
+
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      color: #dc2626;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p {
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .retry-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: #2563eb;
+      }
+    }
+  }
+
+  // Empty State
+  .empty-state {
+    text-align: center;
+    padding: 80px 24px;
+
+    h3 {
+      color: #0f172a;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p {
+      color: #64748b;
+    }
+  }
+
+  .recharts-wrapper{
+    height: 50%;
+    svg{
+      height: 50% !important;
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 1024px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    .recharts-wrapper{
+      height: 100%;
+      svg{
+        height: 100% !important;
+      }
+    }
+
+    .header {
+      .title-section {
+        h1 {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      
+      .metric-card {
+        padding: 20px;
+      }
+    }
+
+    .chart-section {
+      padding: 20px;
+      
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        
+        .legend {
+          gap: 12px;
+        }
+      }
+    }
+
+    .distribution-section {
+      padding: 20px;
+      
+      .distribution-bars {
+        .distribution-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          
+          .distribution-label {
+            order: 1;
+          }
+          
+          .distribution-bar {
+            order: 2;
+          }
+          
+          .distribution-percentage {
+            order: 3;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chart-section {
+      .section-header {
+        .legend {
+          .legend-item {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Recharts customizations
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #f8fafc;
+}
+
+.recharts-x-axis .recharts-cartesian-axis-ticks .recharts-cartesian-axis-tick:first-child,
+.recharts-x-axis .recharts-cartesian-axis-ticks .recharts-cartesian-axis-tick:last-child {
+  display: none;
+}
+
+// Scrollbar Styling
+.recommendation-trend::-webkit-scrollbar {
+  width: 6px;
+}
+
+.recommendation-trend::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.recommendation-trend::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.recommendation-trend::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

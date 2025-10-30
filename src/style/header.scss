@@ -1,0 +1,530 @@
+@import './main_props.scss';
+
+// Header Specific Variables
+$header-bg: #14213d;
+$header-text: #ffffff;
+$accent-color: #fdad03;
+$border-color: #52525236;
+$mobile-nav-height: 60px;
+$bottom-nav-height: 70px;
+
+// Base Header Styles
+#header {
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background-color: $header-bg;
+  color: $accent-color;
+  
+  .container {
+    @include container;
+    @include flex-between;
+    height: $mobile-nav-height;
+    position: relative;
+
+    // Logo Styles
+    #logo {
+      text-decoration: none;
+      flex-shrink: 0;
+      z-index: 1002;
+
+      p {
+        position: relative;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-style: italic;
+        font-size: 1.4rem;
+        color: $header-text;
+        padding-right: 14px;
+        margin: 0;
+        line-height: 1;
+        
+        span {
+          color: $accent-color;
+        }
+        
+        &::after {
+          content: "";
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background-color: $accent-color;
+          left: 23px;
+          top: 7px;
+        }
+      }
+    }
+
+    // Search Toggle Button (Mobile)
+    .search-toggle {
+      background: none;
+      border: none;
+      color: $header-text;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      @include flex-center;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    // Mobile Search Container
+    .mobile-search-container {
+      @include flex-between;
+      flex: 1;
+      margin: 0 10px;
+      gap: 10px;
+
+      .search-back {
+        background: none;
+        border: none;
+        color: $header-text;
+        padding: 6px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        @include flex-center;
+        flex-shrink: 0;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    // Desktop Navigation
+    .desktop-nav {
+      @include flex-between;
+      gap: 2rem;
+      
+      .nav-link {
+        text-decoration: none;
+        color: $header-text;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 8px 0;
+        text-transform: capitalize;
+        transition: all 0.2s ease;
+        position: relative;
+        white-space: nowrap;
+
+        &:hover {
+          color: $accent-color;
+        }
+
+        &.active {
+          color: $accent-color;
+          
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $accent-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile Bottom Navigation
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $bottom-nav-height;
+  background: $header-bg;
+  border-top: 1px solid $border-color;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  @include flex-between;
+  padding: 0 0.5rem;
+  backdrop-filter: blur(10px);
+
+  .bottom-nav-link {
+    @include flex-center;
+    @include flex-column;
+    flex: 1;
+    padding: 8px 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    min-width: 0;
+    position: relative;
+
+    &:hover {
+      background: rgba($accent-color, 0.08);
+    }
+
+    &.active {
+      .bottom-nav-icon {
+        transform: translateY(-2px);
+        
+        svg {
+          fill: $accent-color;
+        }
+      }
+      
+      .bottom-nav-label {
+        color: $accent-color;
+        font-weight: 600;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 3px;
+        background: $accent-color;
+        border-radius: 0 0 2px 2px;
+      }
+    }
+
+    .bottom-nav-icon {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 4px;
+      @include flex-center;
+      transition: transform 0.2s ease;
+      
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: $header-text;
+        transition: fill 0.2s ease;
+      }
+    }
+
+    .bottom-nav-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: $header-text;
+      transition: color 0.2s ease;
+      text-align: center;
+      line-height: 1.1;
+      @include text-ellipsis(1);
+    }
+  }
+}
+
+// Search Container Styles
+.search-container {
+  width: 50%;
+  max-width: 500px;
+  height: 37px;
+  position: relative;
+
+  form {
+    width: 100%;
+    height: 100%;
+    @include flex-between;
+    
+    input {
+      height: 100%;
+      flex: 1;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+      outline: none;
+      border: none;
+      padding: 7px 15px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #333;
+
+      &::placeholder {
+        color: #666;
+      }
+    }
+
+    button {
+      width: 50px;
+      height: 100%;
+      padding: 7px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      border: none;
+      outline: none;
+      background-color: #cdcdcd;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      @include flex-center;
+
+      &:hover {
+        background-color: #b8b8b8;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+// Autocomplete Suggestions
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 7px 7px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1001;
+  margin-top: 1px;
+}
+
+.suggestion-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.9rem;
+  color: #333;
+  transition: all 0.2s ease;
+  background: #fff;
+
+  &:hover {
+    background: #e5e5e5;
+    color: $header-bg;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.loading {
+    color: #666;
+    font-style: italic;
+    background: #fafafa;
+  }
+
+  &.error {
+    color: #d32f2f;
+    background: #ffebee;
+  }
+
+  &.no-results {
+    color: #666;
+    font-style: italic;
+    background: #fafafa;
+  }
+}
+
+// Mobile Overlay
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Responsive Design
+// Tablet Styles
+@media (max-width: $breakpoint-tablet) {
+  #header .container {
+    padding: 0 1rem;
+    
+    #logo p {
+      font-size: 1.3rem;
+    }
+    
+    .desktop-nav {
+      gap: 1.5rem;
+      
+      .nav-link {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: $breakpoint-mobile) {
+  #header .container {
+    padding: 0 0.75rem;
+    
+    #logo p {
+      font-size: 1.2rem;
+      
+      &::after {
+        width: 3px;
+        height: 3px;
+        left: 20px;
+        top: 6px;
+      }
+    }
+  }
+
+  // Hide desktop nav on mobile
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    height: 65px;
+    padding: 0 0.25rem;
+    
+    .bottom-nav-link {
+      padding: 6px 2px;
+      
+      .bottom-nav-icon {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 3px;
+      }
+      
+      .bottom-nav-label {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+// Small Mobile Devices
+@media (max-width: 360px) {
+  #header .container {
+    padding: 0 0.5rem;
+    
+    #logo p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .mobile-bottom-nav {
+    .bottom-nav-link .bottom-nav-label {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+
+// Mobile Search Fullscreen Styles
+.mobile-search-fullscreen {
+  @include flex-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $mobile-nav-height;
+  background: $header-bg;
+  padding: 0 0.75rem;
+  z-index: 1003;
+
+  .search-back {
+    background: none;
+    border: none;
+    color: $header-text;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    @include flex-center;
+    flex-shrink: 0;
+    margin-right: 10px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .search-container {
+    flex: 1;
+    margin: 0;
+
+    form {
+      input {
+        border-radius: 7px;
+        font-size: 1rem;
+        padding: 10px 15px;
+      }
+
+      button {
+        display: none; // Hide search button in fullscreen mode
+      }
+    }
+  }
+}
+
+.mobile-search-container {
+  display: none;
+}
+
+#header .container {
+  position: relative;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  #header .container {
+    #logo,
+    .search-toggle {
+      transition: opacity 0.3s ease;
+    }
+  }
+}
+// Large Desktop
+// @media (min-width: $breakpoint-desktop) {
+//   #header .container {
+//     max-width: 1200px;
+//   }
+// }
+
+// Scrollbar styling for suggestions dropdown
+.suggestions-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 0 7px 0;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

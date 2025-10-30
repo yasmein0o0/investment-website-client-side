@@ -1,0 +1,418 @@
+
+#signup-container{
+    width: 100%;
+    max-width: 100%;
+    padding-top: 120px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+
+
+    h1{
+      position: relative;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      // font-style: italic;
+      font-size: 1.9rem;
+      color: #000;
+      padding-right: 14px;
+      margin-bottom: 10px;
+      span{
+        color: #fdad03;
+      }
+      }
+      h1::after{
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #fdad03;
+        left: 25px;
+        top: 9px;
+      }
+
+
+    h3{
+      font-size: 14px;
+      margin-bottom: 40px;   
+      color: #848484;
+  }
+
+
+
+  h2{
+    font-size: 17px;
+    margin-bottom: 20px;   
+    color: #000000b8;
+    align-self: flex-start;
+    text-transform: uppercase;
+}
+
+    #signup, form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        border-radius: 16px;
+        padding: 12px;
+    }
+
+    #signup{
+        box-shadow: 0 0 1px rgba(0, 0, 0, .2), 
+        0 0 4px rgba(0, 0, 0, .02),
+         0 12px 36px rgba(0, 0, 0, .06);
+        // border: 1px solid #bfbfbf;
+         min-height: 420px;
+         background-color: #fff;
+    }
+
+    form{
+        width: min(408px, 100vw - 24px);
+        min-width: 300px;
+        padding: 24px 24px 16px;
+        label{
+            font-size: .9rem;
+            align-self: flex-start;
+            margin-bottom: 6px;
+            text-transform: capitalize;
+            color: #00000096;
+        }
+
+        .label-error{
+            color: rgb(255, 0, 0);
+            
+        }
+        .label-error + input{
+            border-color: rgb(255, 198, 198);
+        }
+        input{
+            width: 100%;
+            padding: 7px 15px;
+            font-size: .9rem;
+            margin-bottom: 25px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #6969695c;
+            // border-radius: 10px;
+         }
+
+         .password-input-container {
+          position: relative;
+          width: 100%;
+      }
+      #password-input {
+        padding-right: 50px;
+     }
+
+     .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 20%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+     }
+
+         input::placeholder{
+            text-transform: capitalize;
+         }
+
+         button{
+            width: 100%;
+            padding: 10px 6px;
+            color: #000;
+            background-color: #dedede96;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            text-transform: capitalize;
+            margin-bottom: 0;
+         }
+
+         #error-msg {
+          margin: 10px 0 0 0;
+          color: red;
+          font-size: 0.9rem;
+          text-align: center;
+          min-height: 20px;
+        }
+    }
+
+    span{
+      margin-bottom: 10px;
+    }
+
+    p{
+        margin: 15px 0;
+        font-weight: bolder;
+    }
+
+    #sign-up-social-networks, #sign-up-with-google{
+      min-width: 100%;
+      padding: 0px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #sign-up-with-google{
+      padding: 7px;
+      width: 100%;
+      background-color: #dedede96 ;
+
+      span{
+        margin-bottom: 0px;
+      }
+
+    }
+    #sign-up-with-google> svg{
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+
+    button{
+        padding-bottom: 12px;
+        color: #000;
+        background-color: #fff;
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        cursor: pointer;
+        span{
+            font-weight: bolder;
+        }
+
+        margin-bottom: 20px;
+    }
+
+    #have-account{
+      margin-top: 40px;
+      span{
+        color: #fdad03;
+        text-transform: capitalize;
+      }
+    }
+}
+
+/* RESPONSIVE DESIGN - MATCHING SASS SPECIFICITY */
+@media (max-width: 768px) {
+  #signup-container{
+    // margin-top: 120px;
+    width: 100%;
+    padding: 100px 10px;
+    min-height: 100vh;
+    
+    h1{
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+    
+    #signup{
+      min-height: 380px;
+      border-radius: 14px;
+    }
+    
+    form{
+      width: min(380px, 100vw - 20px);
+      min-width: 280px;
+      padding: 20px 20px 14px;
+      
+      label{
+        font-size: .85rem;
+        margin-bottom: 5px;
+      }
+      
+      input{
+        padding: 15px 13px;
+        font-size: .85rem;
+        margin-bottom: 22px;
+        border-radius: 8px;
+      }
+      
+      button{
+        width: 130px;
+        padding: 11px 5px;
+        font-size: 0.95rem;
+      }
+    }
+    
+    p{
+      margin: 13px 0;
+      font-size: 0.95rem;
+    }
+    
+    button{
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  #signup-container{
+    // margin-top: 100px;
+    padding: 0 15px;
+    
+    h1{
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+    
+    #signup{
+      min-height: 350px;
+      border-radius: 12px;
+      padding: 10px;
+    }
+    
+    form{
+      // width: min(350px, 100vw - 30px);
+      min-width: 260px;
+      padding: 18px 18px 12px;
+      
+      label{
+        font-size: .8rem;
+        margin-bottom: 4px;
+      }
+      
+      input{
+        padding: 13px 11px;
+        font-size: .8rem;
+        margin-bottom: 20px;
+        border-radius: 6px;
+      }
+      
+      button{
+        width: 120px;
+        padding: 10px 4px;
+        font-size: 0.9rem;
+      }
+      
+      #error-msg{
+        font-size: 0.9rem;
+      }
+    }
+    
+    p{
+      margin: 12px 0;
+      font-size: 0.9rem;
+    }
+    
+    button{
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  #signup-container{
+    // margin-top: 80px;
+    padding: 0 10px;
+    
+    h1{
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+    
+    #signup{
+      min-height: 320px;
+      border-radius: 10px;
+      padding: 8px;
+    }
+    
+    form{
+      width: min(320px, 100vw - 20px);
+      min-width: 240px;
+      padding: 16px 16px 10px;
+      
+      label{
+        font-size: .75rem;
+        margin-bottom: 3px;
+      }
+      
+      input{
+        padding: 12px 10px;
+        font-size: .75rem;
+        margin-bottom: 18px;
+        border-radius: 5px;
+      }
+      
+      button{
+        width: 110px;
+        padding: 9px 3px;
+        font-size: 0.85rem;
+      }
+      
+      #error-msg{
+        font-size: 0.85rem;
+      }
+    }
+    
+    p{
+      margin: 10px 0;
+      font-size: 0.85rem;
+    }
+    
+    button{
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  #signup-container{
+    // margin-top: 70px;
+    
+    h1{
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    #signup{
+      min-height: 300px;
+      border-radius: 8px;
+    }
+    
+    form{
+      width: min(300px, 100vw - 16px);
+      min-width: 220px;
+      padding: 14px 14px 8px;
+      
+      input{
+        padding: 11px 9px;
+        margin-bottom: 16px;
+      }
+      
+      button{
+        width: 100px;
+        padding: 8px 2px;
+        font-size: 0.8rem;
+      }
+    }
+    
+    p{
+      margin: 8px 0;
+      font-size: 0.8rem;
+    }
+    
+    button{
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+  }
+}

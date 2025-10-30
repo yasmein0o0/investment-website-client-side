@@ -1,0 +1,414 @@
+@import '././main_props.scss'; 
+
+// Sidebar Variables
+$sidebar-width: 380px;
+$sidebar-height: 1040px;
+$sidebar-bg: #fff;
+$sidebar-shadow: 1px 1px 10px #e1e1e1af;
+$sidebar-border-radius: 10px;
+
+#sidebar {
+    width: $sidebar-width;
+    height: $sidebar-height;
+    padding: 10px;
+    position: sticky;
+    top: 60px;
+    right: 0px;
+    bottom: 10px;
+    border-radius: $sidebar-border-radius;
+    z-index: 100;
+    background-color: $sidebar-bg;
+    box-shadow: $sidebar-shadow;
+    margin-bottom: 400px;
+    transition: all 0.3s ease;
+
+    // Hide on mobile by default, show when mobile-open class is added
+    @media (max-width: $breakpoint-tablet) {
+        display: none;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 90vw;
+        max-width: $sidebar-width;
+        height: calc(100vh - 60px);
+        margin-bottom: 0;
+        border-radius: 0;
+        z-index: 999;
+        
+        &.mobile-open {
+            display: block;
+            animation: slideInRight 0.3s ease;
+        }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100vw;
+        max-width: none;
+    }
+
+    #watchlists-container {
+        height: 100%;
+        width: 100%;
+        border-bottom: 1px solid #90f0ff;
+        overflow-y: auto;
+        
+        // Hide scrollbar for all browsers
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+}
+
+/* Mobile Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    
+    @media (max-width: $breakpoint-tablet) {
+        @include flex-center;
+        position: fixed;
+        bottom: 8%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background: $primary-color;
+        color: $secondary-color;
+        border: none;
+        border-radius: 8px 0 0 8px;
+        width: 30px;
+        height: 60px;
+        cursor: pointer;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: darken($primary-color, 5%);
+            width: 45px;
+        }
+
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        // When sidebar is open, hide the toggle button
+        .mobile-open ~ & {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 30px;
+        height: 50px;
+        
+        &:hover {
+            width: 38px;
+        }
+    }
+}
+
+/* Mobile Overlay */
+.sidebar-overlay {
+    display: none;
+    
+    @media (max-width: $breakpoint-tablet) {
+        &.active {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            animation: fadeIn 0.3s ease;
+        }
+    }
+}
+
+/* Sidebar Box Component */
+.side-bar-box {
+    width: 100%;
+    background-color: $sidebar-bg;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    .title {
+        width: 100%;
+        font-size: 1rem;
+        @include flex-center;
+        color: #000;
+        text-transform: uppercase;
+        height: 40px;
+        border-radius: 8px;
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: #e5e5e5;
+        transition: all 0.3s ease;
+        font-weight: 600;
+
+        &:hover {
+            background-color: darken(#e5e5e5, 5%);
+        }
+
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 0.9rem;
+            height: 36px;
+        }
+    }
+
+    .header {
+        @include flex-between;
+        align-items: center;
+        padding: 12px 10px;
+        border-bottom: 1px solid #96bae4;
+        font-size: 0.9rem;
+        font-weight: bold;
+        background-color: #f8f9fa;
+        
+        > * {
+            @include flex-center;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .header-name {
+            justify-content: flex-start;
+            width: 35%;
+            text-align: left;
+        }
+        
+        .header-price {
+            width: 25%;
+        }
+        
+        .header-change {
+            width: 15%;
+        }
+        
+        .header-change-percent {
+            width: 25%;
+        }
+
+        @media (max-width: $breakpoint-mobile) {
+            padding: 10px 8px;
+            font-size: 0.85rem;
+            
+            > * {
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+    .row {
+        @include flex-between;
+        align-items: center;
+        border-bottom: 1px dotted #bef6ff;
+        padding: 12px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+
+        > * {
+            @include flex-center;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        :first-child {
+            justify-content: flex-start;
+        }
+
+        .name {
+            width: 35%;
+            font-size: 0.85rem;
+            @include text-ellipsis;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .last {
+            width: 25%;
+            // font-weight: 600;
+        }
+        
+        .chg {
+            width: 15%;
+            // font-weight: 600;
+        }
+        
+        .chg-perecnt {
+            width: 25%;
+            // font-weight: 600;
+        }
+
+        @media (max-width: $breakpoint-mobile) {
+            padding: 10px 8px;
+            
+            > * {
+                font-size: 0.85rem;
+            }
+            
+            .name {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+/* Color States */
+.gain {
+    color: $success-color !important;
+}
+
+.lose {
+    color: $error-color !important;
+}
+
+/* Box States */
+.open-box {
+    .header, .row {
+        display: flex;
+    }
+    
+    .title {
+        border-radius: 8px 8px 0 0;
+    }
+}
+
+.closed-box {
+    .header, .row {
+        display: none;
+    }
+    
+    .title {
+        border-bottom: 1px solid #bff8ff;
+        padding: 10px;
+    }
+}
+
+/* Watchlist Header */
+#watchlists-header {
+    font-size: 1.3rem;
+    width: 100%;
+    border-bottom: 1px solid #ff8400;
+    background-color: #fff;
+    position: sticky;
+    text-align: center;
+    top: 0; 
+    z-index: 1;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    @include flex-between;
+    padding: 10px 15px 5px 15px;
+
+    #add-watchlist-btn {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        @include flex-center;
+
+        &:hover {
+            background-color: #ebfaff;
+            transform: scale(1.1);
+        }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 1.1rem;
+        padding: 8px 12px 4px 12px;
+    }
+}
+
+/* Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for different screen sizes */
+@media (max-width: 1440px) {
+    #sidebar:not(.mobile-open) {
+        width: 380px;
+        height: calc(100vh);
+    }
+}
+
+@media (max-width: 1200px) {
+    #sidebar:not(.mobile-open) {
+        width: 380px;
+        height: calc(100vh);
+    }
+}
+
+@media (max-width: 1024px) {
+    // Mobile styles are handled above
+}
+
+@media (max-width: 480px) {
+    #sidebar.mobile-open {
+        width: 100vw;
+        height: calc(100vh - 110px);
+        top: 60px;
+        .side-bar-box {
+            .header, .row {
+                padding: 10px 6px;
+                
+                > * {
+                    font-size: 0.8rem;
+                }
+                
+                .name {
+                    font-size: 0.75rem;
+                }
+            }
+        }
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar-toggle,
+    .sidebar-overlay {
+        display: none !important;
+    }
+    
+    #sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        margin-bottom: 0;
+    }
+}
