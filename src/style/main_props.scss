@@ -157,3 +157,67 @@ $breakpoint-desktop: 1200px;
     @return #ffffff;
   }
 }
+
+
+// DARK THEME VARIABLES - Add to main_props.scss
+$dark-bg-primary: #000000;
+$dark-bg-secondary: #14213d;
+$dark-accent: #fca311;
+$dark-text-primary: #e5e5e5;
+$dark-text-secondary: #ffffff;
+$dark-border: #2d3748;
+$dark-card-bg: #1a202c;
+$dark-hover: #2d3748;
+
+// Dark theme mixin
+@mixin dark-theme {
+  // Global backgrounds
+  background-color: $dark-bg-primary !important;
+  color: $dark-text-primary !important;
+  
+  // Headers and text
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-text-secondary !important;
+  }
+  
+  // Cards and containers
+  .card, .container, .content-card, .metric-card, .info-card {
+    background-color: $dark-bg-secondary !important;
+    border-color: $dark-border !important;
+  }
+  
+  // Inputs and forms
+  input, select, textarea {
+    background-color: $dark-card-bg !important;
+    border-color: $dark-border !important;
+    color: $dark-text-primary !important;
+    
+    &::placeholder {
+      color: $dark-text-primary !important;
+      opacity: 0.7;
+    }
+  }
+  
+  // Tables
+  table, .table-row, .table-cell {
+    background-color: $dark-bg-secondary !important;
+    border-color: $dark-border !important;
+    color: $dark-text-primary !important;
+  }
+  
+  // Buttons
+  button {
+    background-color: $dark-accent !important;
+    color: $dark-bg-primary !important;
+    border-color: $dark-accent !important;
+    
+    &:hover {
+      background-color: lighten($dark-accent, 10%) !important;
+    }
+    
+    &:disabled {
+      background-color: $dark-border !important;
+      color: $dark-text-primary !important;
+    }
+  }
+}

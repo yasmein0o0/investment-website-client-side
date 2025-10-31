@@ -1,12 +1,12 @@
 @import './main_props.scss';
 
 // Header Specific Variables
-$header-bg: #14213d;
-$header-text: #ffffff;
+$header-bg: #fff;
+$header-text: #14213d;
 $accent-color: #fdad03;
 $border-color: #52525236;
 $mobile-nav-height: 60px;
-$bottom-nav-height: 70px;
+$sidebar-width: 280px;
 
 // Base Header Styles
 #header {
@@ -23,6 +23,7 @@ $bottom-nav-height: 70px;
     @include flex-between;
     height: $mobile-nav-height;
     position: relative;
+    background-color: #fff;
 
     // Logo Styles
     #logo {
@@ -57,6 +58,34 @@ $bottom-nav-height: 70px;
       }
     }
 
+    // Mobile Controls (Menu + Search)
+    .mobile-controls {
+      @include flex-center;
+      gap: 10px;
+      z-index: 1002;
+    }
+
+    // Menu Toggle Button (Mobile)
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: $header-text;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      @include flex-center;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
     // Search Toggle Button (Mobile)
     .search-toggle {
       background: none;
@@ -69,7 +98,7 @@ $bottom-nav-height: 70px;
       @include flex-center;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.05);
       }
 
       svg {
@@ -78,33 +107,11 @@ $bottom-nav-height: 70px;
       }
     }
 
-    // Mobile Search Container
-    .mobile-search-container {
-      @include flex-between;
+    // Desktop Search
+    .desktop-search {
       flex: 1;
-      margin: 0 10px;
-      gap: 10px;
-
-      .search-back {
-        background: none;
-        border: none;
-        color: $header-text;
-        padding: 6px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.2s ease;
-        @include flex-center;
-        flex-shrink: 0;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
+      max-width: 500px;
+      margin: 0 2rem;
     }
 
     // Desktop Navigation
@@ -116,7 +123,7 @@ $bottom-nav-height: 70px;
         text-decoration: none;
         color: $header-text;
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 700;
         padding: 8px 0;
         text-transform: capitalize;
         transition: all 0.2s ease;
@@ -145,94 +152,169 @@ $bottom-nav-height: 70px;
   }
 }
 
-// Mobile Bottom Navigation
-.mobile-bottom-nav {
+// Mobile Sidebar Menu - Now from LEFT side
+.mobile-sidebar {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: $bottom-nav-height;
+  top: 0;
+  left: -100%;
+  width: $sidebar-width;
+  height: 100vh;
   background: $header-bg;
-  border-top: 1px solid $border-color;
-  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  @include flex-between;
-  padding: 0 0.5rem;
-  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
+  z-index: 1031;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  transform: translate3d(0, 0, 0);
+  will-change: left;
+  
+  &.active {
+    left: 0;
+  }
 
-  .bottom-nav-link {
-    @include flex-center;
-    @include flex-column;
-    flex: 1;
-    padding: 8px 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    min-width: 0;
-    position: relative;
+  // Smooth backdrop for the sidebar content
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+  }
 
-    &:hover {
-      background: rgba($accent-color, 0.08);
+  .sidebar-header {
+    @include flex-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $border-color;
+    height: $mobile-nav-height;
+
+    .sidebar-logo {
+      #logo p {
+        font-size: 1.2rem;
+        
+        &::after {
+          left: 18px;
+          top: 5px;
+        }
+      }
     }
 
-    &.active {
-      .bottom-nav-icon {
-        transform: translateY(-2px);
+    .sidebar-close {
+      background: none;
+      border: none;
+      color: $header-text;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      @include flex-center;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .sidebar-nav {
+    padding: 1.5rem;
+
+    .nav-link {
+      @include flex-center;
+      gap: 12px;
+      text-decoration: none;
+      color: $header-text;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba($border-color, 0.5);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        color: $accent-color;
+        transform: translateX(4px);
         
-        svg {
+        .nav-icon svg {
           fill: $accent-color;
         }
       }
-      
-      .bottom-nav-label {
+
+      &.active {
         color: $accent-color;
-        font-weight: 600;
+        
+        .nav-icon svg {
+          fill: $accent-color;
+        }
       }
 
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 4px;
-        height: 3px;
-        background: $accent-color;
-        border-radius: 0 0 2px 2px;
+      .nav-icon {
+        width: 20px;
+        height: 20px;
+        @include flex-center;
+        transition: transform 0.2s ease;
+        
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: $header-text;
+          transition: fill 0.2s ease;
+        }
+      }
+
+      .nav-label {
+        flex: 1;
+        transition: transform 0.2s ease;
       }
     }
+  }
+}
 
-    .bottom-nav-icon {
-      width: 22px;
-      height: 22px;
-      margin-bottom: 4px;
-      @include flex-center;
-      transition: transform 0.2s ease;
-      
-      svg {
-        width: 100%;
-        height: 100%;
-        fill: $header-text;
-        transition: fill 0.2s ease;
-      }
-    }
+// Enhanced Mobile Overlay with Swipe Support
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
-    .bottom-nav-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: $header-text;
-      transition: color 0.2s ease;
-      text-align: center;
-      line-height: 1.1;
-      @include text-ellipsis(1);
-    }
+  // Swipe to close area - right side of screen
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    // background: rgba(255, 0, 0, 0.1); // Debug only - remove this line
   }
 }
 
 // Search Container Styles
 .search-container {
-  width: 50%;
-  max-width: 500px;
+  width: 100%;
   height: 37px;
   position: relative;
 
@@ -251,6 +333,7 @@ $bottom-nav-height: 70px;
       padding: 7px 15px;
       font-size: 0.9rem;
       background: #fff;
+      border: 1px solid #dedede;
       color: #333;
 
       &::placeholder {
@@ -266,7 +349,7 @@ $bottom-nav-height: 70px;
       border-bottom-right-radius: 7px;
       border: none;
       outline: none;
-      background-color: #cdcdcd;
+      background-color: #14213d;
       cursor: pointer;
       transition: all 0.2s ease;
       @include flex-center;
@@ -278,6 +361,7 @@ $bottom-nav-height: 70px;
       svg {
         width: 18px;
         height: 18px;
+        color: #fff;
       }
     }
   }
@@ -336,105 +420,6 @@ $bottom-nav-height: 70px;
   }
 }
 
-// Mobile Overlay
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  
-  &.active {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-// Responsive Design
-// Tablet Styles
-@media (max-width: $breakpoint-tablet) {
-  #header .container {
-    padding: 0 1rem;
-    
-    #logo p {
-      font-size: 1.3rem;
-    }
-    
-    .desktop-nav {
-      gap: 1.5rem;
-      
-      .nav-link {
-        font-size: 0.95rem;
-      }
-    }
-  }
-}
-
-// Mobile Styles
-@media (max-width: $breakpoint-mobile) {
-  #header .container {
-    padding: 0 0.75rem;
-    
-    #logo p {
-      font-size: 1.2rem;
-      
-      &::after {
-        width: 3px;
-        height: 3px;
-        left: 20px;
-        top: 6px;
-      }
-    }
-  }
-
-  // Hide desktop nav on mobile
-  .desktop-nav {
-    display: none !important;
-  }
-
-  .mobile-bottom-nav {
-    height: 65px;
-    padding: 0 0.25rem;
-    
-    .bottom-nav-link {
-      padding: 6px 2px;
-      
-      .bottom-nav-icon {
-        width: 20px;
-        height: 20px;
-        margin-bottom: 3px;
-      }
-      
-      .bottom-nav-label {
-        font-size: 0.65rem;
-      }
-    }
-  }
-}
-
-// Small Mobile Devices
-@media (max-width: 360px) {
-  #header .container {
-    padding: 0 0.5rem;
-    
-    #logo p {
-      font-size: 1.1rem;
-    }
-  }
-
-  .mobile-bottom-nav {
-    .bottom-nav-link .bottom-nav-label {
-      font-size: 0.6rem;
-    }
-  }
-}
-
-
 // Mobile Search Fullscreen Styles
 .mobile-search-fullscreen {
   @include flex-between;
@@ -460,7 +445,7 @@ $bottom-nav-height: 70px;
     margin-right: 10px;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.05);
     }
 
     svg {
@@ -487,28 +472,114 @@ $bottom-nav-height: 70px;
   }
 }
 
-.mobile-search-container {
-  display: none;
+// Remove Bottom Navigation
+.mobile-bottom-nav {
+  display: none !important;
 }
 
-#header .container {
-  position: relative;
+// Swipe Gesture Support
+// Add this to your main app container for better swipe detection
+.app-container {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-@media (max-width: $breakpoint-mobile) {
+// Responsive Design
+// Tablet Styles
+@media (max-width: $breakpoint-tablet) {
   #header .container {
-    #logo,
-    .search-toggle {
-      transition: opacity 0.3s ease;
+    padding: 0 1rem;
+    
+    #logo p {
+      font-size: 1.3rem;
+    }
+    
+    .desktop-nav {
+      gap: 1.5rem;
+      
+      .nav-link {
+        font-size: 0.95rem;
+      }
+    }
+
+    .desktop-search {
+      margin: 0 1rem;
+      max-width: 400px;
     }
   }
 }
-// Large Desktop
-// @media (min-width: $breakpoint-desktop) {
-//   #header .container {
-//     max-width: 1200px;
-//   }
-// }
+
+// Mobile Styles
+@media (max-width: $breakpoint-mobile) {
+  #header .container {
+    padding: 0 0.75rem;
+    
+    #logo p {
+      font-size: 1.2rem;
+      
+      &::after {
+        width: 3px;
+        height: 3px;
+        left: 20px;
+        top: 6px;
+      }
+    }
+
+    // Hide desktop elements on mobile
+    .desktop-nav,
+    .desktop-search {
+      display: none !important;
+    }
+
+    // Show mobile controls
+    .mobile-controls {
+      display: flex !important;
+    }
+  }
+
+  .mobile-sidebar {
+    width: 85%;
+    max-width: 300px;
+  }
+}
+
+// Small Mobile Devices
+@media (max-width: 360px) {
+  #header .container {
+    padding: 0 0.5rem;
+    
+    #logo p {
+      font-size: 1.1rem;
+    }
+
+    .mobile-controls {
+      gap: 8px;
+    }
+
+    .menu-toggle,
+    .search-toggle {
+      padding: 6px;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .mobile-sidebar {
+    width: 90%;
+    
+    .sidebar-nav {
+      padding: 1rem;
+      
+      .nav-link {
+        padding: 0.8rem 0;
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
 
 // Scrollbar styling for suggestions dropdown
 .suggestions-dropdown::-webkit-scrollbar {
@@ -528,3 +599,12 @@ $bottom-nav-height: 70px;
 .suggestions-dropdown::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+// Large Desktop
+// @media (min-width: $breakpoint-desktop) {
+//   #header .container {
+//     max-width: 1200px;
+//   }
+// }
+
+
