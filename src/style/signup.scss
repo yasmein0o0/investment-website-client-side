@@ -245,7 +245,7 @@
       }
       
       button{
-        width: 130px;
+        width: 90%;
         padding: 11px 5px;
         font-size: 0.95rem;
       }
@@ -266,7 +266,7 @@
 @media (max-width: 576px) {
   #signup-container{
     // margin-top: 100px;
-    padding: 0 15px;
+    padding: 80px 15px;
     
     h1{
       font-size: 30px;
@@ -297,7 +297,7 @@
       }
       
       button{
-        width: 120px;
+        width: 90%;
         padding: 10px 4px;
         font-size: 0.9rem;
       }
@@ -322,7 +322,7 @@
 @media (max-width: 400px) {
   #signup-container{
     // margin-top: 80px;
-    padding: 0 10px;
+    padding: 80 10px;
     
     h1{
       font-size: 26px;
@@ -353,7 +353,7 @@
       }
       
       button{
-        width: 110px;
+        width: 90%;
         padding: 9px 3px;
         font-size: 0.85rem;
       }
@@ -400,7 +400,7 @@
       }
       
       button{
-        width: 100px;
+        width: 90%;
         padding: 8px 2px;
         font-size: 0.8rem;
       }

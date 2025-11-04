@@ -121,7 +121,7 @@
     }
 
     button[type="submit"] {
-      width: 100%;
+      width: 90%;
       padding: 12px 6px;
       color: #000;
       background-color: #dedede96;
@@ -207,7 +207,7 @@
 @media (max-width: 1200px) {
   #login-container {
     width: 95%;
-    margin-top: 150px;
+    padding-right: 150px;
   }
 }
 
@@ -215,8 +215,7 @@
   #login-container {
     width: 100%;
     height: 100vh;
-    margin-top: 60px;
-    padding: 20px 15px;
+    padding: 60px 15px;
     justify-content: flex-start;
 
     h1 {
@@ -241,7 +240,7 @@
 
 @media (max-width: 576px) {
   #login-container {
-    margin-top: 100px;
+    padding-top: 100px;
 
     h1 {
       font-size: 32px;
@@ -274,7 +273,7 @@
       }
 
       button[type="submit"] {
-        width: 150px;
+        width: 90%;
         padding: 10px 6px;
         font-size: 0.95rem;
       }
@@ -294,7 +293,7 @@
 
 @media (max-width: 400px) {
   #login-container {
-    margin-top: 80px;
+    padding-top: 80px;
 
     h1 {
       font-size: 28px;
@@ -313,7 +312,7 @@
       }
 
       button[type="submit"] {
-        width: 110px;
+        width: 90%;
         font-size: 0.9rem;
       }
     }
