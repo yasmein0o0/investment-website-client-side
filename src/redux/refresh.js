@@ -4,6 +4,7 @@ import { loginThunk } from './login';
 import { signupThunk } from './signup';
 import { deleteThunk } from './deleteaccount';
 import { logoutThunk } from './logout';
+import { googleAuthThunk } from './googleAuth';
 export const refreshTokenThunk = createAsyncThunk(
     'auth/refresh',
     async (_, { rejectWithValue }) => {
@@ -79,6 +80,10 @@ const authSlice = createSlice({
                     state.accessToken = action.payload.accessToken;
                     state.user = action.payload.user; // if user data is returned
                 }
+            })
+            .addCase(googleAuthThunk.fulfilled, (state, action) => {
+                state.accessToken = action.payload.accessToken;
+                state.user = action.payload.user; // if user data is returned
             })
             .addCase(deleteThunk.fulfilled, (state, action) => {
                 state.accessToken = null;
